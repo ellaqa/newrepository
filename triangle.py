@@ -1,5 +1,3 @@
-import sys
-
 from sys import argv
 
 script, a, b, c = argv
