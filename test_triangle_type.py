@@ -1,9 +1,11 @@
-import subprocess #to use subprocess
-process = subprocess.run(
-                        args= ['python3','triangle_two.py','3','3','3'],
-                        universal_newlines=True,
-                        stdout=subprocess.PIPE
-                        )
-process_out = process.stdout.splitlines()
-print(process_out)
-assert process_out == ['The triangle is equilateral ']
+import sys
+import subprocess
+from subprocess import STDOUT
+import pytest
+
+
+@pytest.mark.parametrize("a,b,c, expected",
+                         [(3, 4, 5, 'scalene')])
+def test_triangle(a, b, c, expected):
+    subprocess.run(args=[a, b, c],universal_newlines=True,STDOUT=subprocess.PIPE)
+assert STDOUT == ['expected']
