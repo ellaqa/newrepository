@@ -5,9 +5,9 @@ import pytest
 
 
 @pytest.mark.parametrize("a,b,c, expected",
-                         [(3, 4, 5, 'scalene')])
+                         [('3', '3', '3', 'equilateral')])
 def test_triangle(a, b, c, expected):
-    subprocess.run(args=[a, b, c],universal_newlines=True,STDOUT=subprocess.PIPE)
-    return STDOUT
-test_triangle('3','4','5','scalene')
-assert STDOUT == ['expected']
+    process = subprocess.run(["python3", "triangle_two.py", a, b, c],
+                              universal_newlines=True,
+                              stdout=subprocess.PIPE)
+    assert process.stdout == [expected]
